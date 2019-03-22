@@ -1,0 +1,27 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="1200" fill="#111111"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="405" y="285" width="339" height="389">
+<rect x="743.004" y="380.114" width="350" height="175" transform="rotate(122.906 743.004 380.114)" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0)">
+<circle cx="647.934" cy="527.038" r="175" transform="rotate(122.906 647.934 527.038)" fill="#2F80ED"/>
+</g>
+<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="457" y="527" width="338" height="389">
+<rect x="457.792" y="820.885" width="350" height="175" transform="rotate(-57.094 457.792 820.885)" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask1)">
+<circle cx="552.863" cy="673.962" r="175" transform="rotate(-57.094 552.863 673.962)" fill="url(#paint0_linear)"/>
+</g>
+<circle cx="600" cy="600" r="345" stroke="#EB5757" stroke-width="10"/>
+<circle cx="600" cy="600" r="395" stroke="#EB5757" stroke-opacity="0.75" stroke-width="10"/>
+<circle cx="600" cy="600" r="445" stroke="#EB5757" stroke-opacity="0.5" stroke-width="10"/>
+<circle cx="600" cy="600" r="495" stroke="#EB5757" stroke-opacity="0.25" stroke-width="10"/>
+<circle cx="600" cy="600" r="545" stroke="#EB5757" stroke-opacity="0.1" stroke-width="10"/>
+<circle cx="600" cy="600" r="595" stroke="#EB5757" stroke-opacity="0.05" stroke-width="10"/>
+<defs>
+<linearGradient id="paint0_linear" x1="552.863" y1="498.962" x2="552.863" y2="848.962" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2D9CDB"/>
+<stop offset="1" stop-color="#2F80ED" stop-opacity="0.5"/>
+</linearGradient>
+</defs>
+</svg>
