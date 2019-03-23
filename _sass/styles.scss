@@ -1,3 +1,56 @@
+body {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "myriad-pro", sans-serif;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+	height: 100vh;
+}
+
+
+nav {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 75px;
+	border-bottom: 2px solid #333;
+	background: rgba(0, 0, 0, 0.75);
+	-webkit-backdrop-filter: saturate(180%) blur(20px);
+	backdrop-filter: saturate(180%) blur(20px);
+	z-index: 10;
+	opacity: 0;
+	transition: opacity 250ms ease-in-out;
+	color: #eee;
+
+	.list {
+		line-height: calc(75px - 2px);
+		text-align: right;
+		padding-right: 20px;
+		box-sizing: border-box;
+
+		.item {
+			margin: 10px;
+			color: #eee;
+			text-decoration: none;
+
+			&:hover {
+				color: #0070c9;
+			}
+		}
+
+		.download {
+			background-color: #0067b9;
+			background: -webkit-linear-gradient(#3d94d9, #0067b9);
+			background: linear-gradient(#3d94d9, #0067b9);
+			border-color: #006dbc;
+			outline: none;
+			border-radius: 4px;
+			color: #fff;
+			padding: 3px 15px 4px;
+		}
+	}
+}
+
 .header {
 	width: 100vw;
 	height: 100vh;
@@ -11,17 +64,21 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-
+		* {
+			transition: all 500ms ease-in-out;
+		}
 		.logo {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			cursor: pointer;
 
 			.icon {
 				width: 400px;
 				height: 400px;
 				background-image: url("../img/LandingIcon.svg");
 				background-size: cover;
+				transition: all 500ms ease-in-out;
 			}
 
 			.title {
@@ -30,6 +87,7 @@
 				font-family: "Airbnb Cereal App";
 				font-weight: bold;
 				margin-left: -150px;
+				z-index: 10;
 			}
 		}
 
