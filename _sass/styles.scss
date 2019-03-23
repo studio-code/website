@@ -55,3 +55,47 @@
 		margin-left: 80px;
 	}
 }
+article {
+	background: #111;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	section {
+		width: 100vw;
+		height: 100vh;
+		background: #111;
+	}
+	.best {
+		display: flex;
+
+		align-items: center;
+		background-image: url("../img/CodeLand.jpg");
+		background-position: bottom right;
+		background-size: contain;
+		background-repeat: no-repeat;
+		.c {
+			margin-left: 10vw;
+			margin-top: -150px;
+			h1 {
+				color: #E0E0E0;
+				font-size: 96px;
+				font-family: "Airbnb Cereal App";
+				font-weight: bold;
+				max-width: 685px;
+				margin: 0;
+			}
+			.slogan {
+				font-family: "Airbnb Cereal App";
+
+				font-style: normal;
+				font-weight: bold;
+				font-size: 24px;
+
+				color: #BDBDBD;
+
+				margin-top: 20px;
+			}
+		}
+	}
+}
