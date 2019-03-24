@@ -119,6 +119,7 @@ article {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	padding-bottom: 200px;
 	section {
 		width: 100vw;
 		height: 100vh;
@@ -128,13 +129,17 @@ article {
 		display: flex;
 
 		align-items: center;
-		background-image: url("../img/CodeLand.jpg");
+		background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("../img/CodeLand.jpg");
 		background-position: bottom right;
-		background-size: contain;
+		background-size: cover;
 		background-repeat: no-repeat;
+		background-attachment: fixed;
+		transform: skewY(-10deg);
 		.c {
+			transform: skewY(10deg);
 			margin-left: 10vw;
 			margin-top: -150px;
+			text-shadow: 0 0 20px rgba(0,0,0,0.5);
 			h1 {
 				color: #E0E0E0;
 				font-size: 96px;
