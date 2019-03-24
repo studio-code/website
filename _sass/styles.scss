@@ -166,9 +166,17 @@ article {
 	.features {
 		text-align: center;
 		color: #E0E0E0;
-		padding-top: 150px;
+		padding-top: 250px;
 		height: auto;
 		max-width: 1200px;
+		h1 {
+			display: inline;
+			position: absolute;
+			margin-top: -100px;
+			left: 0;
+			text-align: center;
+			width: 100%;
+		}
 		.col {
 			padding: 20px;
 		}
