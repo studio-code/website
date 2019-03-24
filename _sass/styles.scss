@@ -64,6 +64,8 @@ nav {
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		margin-right: initial;
+
 		* {
 			transition: all 500ms ease-in-out;
 		}
@@ -159,6 +161,25 @@ article {
 
 				margin-top: 20px;
 			}
+		}
+	}
+	.features {
+		text-align: center;
+		color: #E0E0E0;
+		padding-top: 150px;
+		height: auto;
+		max-width: 1200px;
+		.col {
+			padding: 20px;
+		}
+        .lunar-icons {
+			font-size: 96px;
+		}
+        a {
+			color: inherit;
+		}
+		p {
+			text-align: justify;
 		}
 	}
 }
