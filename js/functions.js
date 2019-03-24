@@ -2,6 +2,7 @@
 ---
 window.addEventListener("scroll", e => {
 	let logo = document.querySelector(".logo > .icon")
+	let nav = document.querySelector("nav")
 	if (window.scrollY > window.innerHeight / 2) {
 		logo.style["z-index"] = 10;
 		logo.style.position = "fixed"
@@ -11,7 +12,11 @@ window.addEventListener("scroll", e => {
 		logo.style.height = "50px"
 		logo.style.border = "1px solid #333"
 		logo.style["border-radius"] = "22.37%"
-		document.querySelector("nav").style.opacity = "1"
+
+		nav.style["border-bottom"] = "2px solid #333";
+		nav.style.background = "rgba(0, 0, 0, 0.75)";
+		nav.style["-webkit-backdrop-filter"] = "saturate(180%) blur(20px)";
+		nav.style["backdrop-filter"] = "saturate(180%) blur(20px)";
 	} else {
 		logo.style["z-index"] = 0;
 		logo.style.position = "static"
@@ -19,7 +24,11 @@ window.addEventListener("scroll", e => {
 		logo.style.height = "400px"
 		logo.style.border = "none"
 		logo.style["border-radius"] = "none"
-		document.querySelector("nav").style.opacity = "0"
+
+		nav.style["border-bottom"] = "none";
+		nav.style.background = "transparent";
+		nav.style["-webkit-backdrop-filter"] = "none";
+		nav.style["backdrop-filter"] = "none";
 	}
 })
 document.querySelector(".logo").addEventListener("click", e => {
