@@ -5,7 +5,7 @@ const listener = e => {
 	let nav = document.querySelector("nav")
 	let mediaQueryList = window.matchMedia("(max-width: 1000px)");
 
-	if (window.scrollY > window.innerHeight / 2) {
+	if (window.scrollY >= window.innerHeight / 2) {
 		logo.style["z-index"] = 10;
 		logo.style.position = "fixed"
 		logo.style.top = "12.5px"
@@ -36,11 +36,23 @@ const listener = e => {
 		nav.style["-webkit-backdrop-filter"] = "none";
 		nav.style["backdrop-filter"] = "none";
 	}
-
+	// compute height
+	const body = document.body
+    const html = document.documentElement;
+	const height = Math.max( body.scrollHeight, body.offsetHeight,
+                       html.clientHeight, html.scrollHeight, html.offsetHeight ) - window.innerHeight
+	if (window.scrollY >= height - 10) {
+		nav.style.background = "rgba(255, 255, 255, 0.75)";
+		nav.style["border-bottom"] = "2px solid #eee";
+		nav.querySelector(".list > a").style.color = "#333"
+	} else {
+		nav.querySelector(".list > a").style.color = "#eee"
+	}
 }
 window.addEventListener("scroll", listener)
 document.querySelector(".logo").addEventListener("click", e => {
 	window.location = "{{site.download}}"
 })
+document.querySelector('.year').innerHTML = new Date().getFullYear()
 
 listener()

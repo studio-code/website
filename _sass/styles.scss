@@ -212,3 +212,55 @@ article {
 		}
 	}
 }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+	background-color: #fff;
+	padding: calc(50vh - 128px) 0;
+	color: #111;
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		text-align: right;
+
+		.logo {
+			margin: 64px 64px 64px 0;
+			border-radius: 22.37%;
+			border: 1px solid #333;
+		}
+
+		.c {
+			font-family: sans-serif;
+		}
+
+		small {
+			font-size: 100%;
+			display: block;
+			color: rgba(#333, .6);
+
+			lunar-icon {
+				font-size: inherit;
+				color: #c62828;
+				position: relative;
+				font-size: 24px;
+			}
+			a {
+				color: inherit;
+			}
+		}
+	}
+}
+@media (max-width: 480px) {
+	footer .container {
+		flex-direction: column;
+		text-align: center;
+
+		.logo {
+			padding-left: 64px;
+		}
+	}
+}
