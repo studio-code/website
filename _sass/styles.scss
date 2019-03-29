@@ -48,7 +48,7 @@ nav {
 
 .header {
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	background: #111;
 	display: flex;
 	justify-content: center;
@@ -110,6 +110,32 @@ nav {
 		margin-left: 80px;
 	}
 }
+
+@media (max-width: 1000px) {
+	.header {
+		padding-top: 100px;
+		padding-bottom: 100px;
+		.icon {
+			width: 200px;
+			height: 200px;
+		}
+		.title {
+			font-size: 72px !important;
+			margin-left: -70px !important;
+		}
+		.right {
+			width: 319.8px;
+			height: 228.8px;
+			margin-left: 0;
+		}
+	}
+	.best {
+		h1 {
+			font-size: 65px !important;
+		}
+	}
+}
+
 article {
 	background: #111;
 	display: flex;

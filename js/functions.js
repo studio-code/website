@@ -1,8 +1,10 @@
 ---
 ---
-window.addEventListener("scroll", e => {
+const listener = e => {
 	let logo = document.querySelector(".logo > .icon")
 	let nav = document.querySelector("nav")
+	let mediaQueryList = window.matchMedia("(max-width: 1000px)");
+
 	if (window.scrollY > window.innerHeight / 2) {
 		logo.style["z-index"] = 10;
 		logo.style.position = "fixed"
@@ -20,17 +22,25 @@ window.addEventListener("scroll", e => {
 	} else {
 		logo.style["z-index"] = 0;
 		logo.style.position = "static"
-		logo.style.width = "400px"
-		logo.style.height = "400px"
+		if (mediaQueryList.matches) {
+			logo.style.width = "200px"
+			logo.style.height = "200px"
+		} else {
+			logo.style.width = "400px"
+			logo.style.height = "400px"
+		}
 		logo.style.border = "none"
 		logo.style["border-radius"] = "none"
-
 		nav.style["border-bottom"] = "none";
 		nav.style.background = "transparent";
 		nav.style["-webkit-backdrop-filter"] = "none";
 		nav.style["backdrop-filter"] = "none";
 	}
-})
+
+}
+window.addEventListener("scroll", listener)
 document.querySelector(".logo").addEventListener("click", e => {
 	window.location = "{{site.download}}"
 })
+
+listener()
