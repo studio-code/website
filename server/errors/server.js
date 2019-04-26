@@ -50,7 +50,7 @@ db.once('open', function() {
 
 	const express = require("express")
 	const app = express()
-	const port = 3000
+	const port = 8080
 
 	app.use(express.json()); // to support JSON-encoded bodies
 	app.use(express.urlencoded()); // to support URL-encoded bodies
@@ -110,5 +110,5 @@ db.once('open', function() {
 			}
 		})
 	})
-	app.listen(port, () => console.log(`App listening on port ${port}!`))
+	app.listen(process.env.PORT || port, () => console.log(`App listening on port ${port}!`))
 });
