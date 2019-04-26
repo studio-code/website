@@ -1,107 +1,114 @@
-const CloudKit = require("./cloudkit.js")
-const fetch = require("node-fetch");
+const mongoose = require('mongoose');
 
-CloudKit.configure({
-	services: {
-		fetch: fetch,
-		// logger: console
-	},
-	containers: [{
-		containerIdentifier: "iCloud.com.ArthurG.StudIO",
-		// serverToServerKeyAuth: {
-		//
-		// 	// This is the key ID you generated in CloudKit Dashboard.
-		// 	keyID: "3c0075a617681c67fd31b8530d203e18c5d7a3829bc716e4ed2eaa6c0ee9be45",
-		//
-		// 	// This should reference the private key file that you used to
-		// 	// generate the above key ID.
-		// 	privateKeyFile: __dirname + "/eckey.pem"
-		//
-		// },
-		apiTokenAuth: {
-			apiToken: "24b8f629f9d82fd2df910ebd946892133b9b0b9e5f3b8b55ac858164a7103f88"
-		},
-		environment: "development"
-	}]
-})
+// Connection URL
+const url = 'mongodb+srv://arguiot:zihty6-korxak-weMjab@studioeditorjserror-jmnlo.gcp.mongodb.net/editorErrorJS';
 
-const container = CloudKit.getDefaultContainer();
-const publicDB = container.publicCloudDatabase;
+// Database Name
+const dbName = 'editorErrorJS';
 
-const express = require("express")
-const app = express()
-const port = 3000
+mongoose.connect(url, {
+	poolSize: 2,
+	ssl: true,
+	keepAlive: 300000,
+	connectTimeoutMS: 30000,
+	autoReconnect: true,
+	reconnectTries: 30000000,
+	reconnectInterval: 5000,
+	promiseLibrary: global.Promise,
+	useNewUrlParser: true
+});
 
-app.use(express.json()); // to support JSON-encoded bodies
-app.use(express.urlencoded()); // to support URL-encoded bodies
+const db = mongoose.connection;
 
-app.get("/", (req, res) => {
-	publicDB.performQuery({
-		recordType: "EditorJSError"
-	}).then(function(response) {
-		const records = response.records
-		let out = "<h1>StudIO - Editor common errors</h1><br>"
-		for (let record of records) {
-			out += `Name: ${record.fields.name.value}<br>`
-			out += `Number: ${record.fields.recurrence.value}<br><hr>`
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function() {
+	const model = new mongoose.Schema({
+		name: String,
+		recurrence: Number,
+		json: {
+			err: String,
+			src: String,
+			line: Number,
+			column: Number,
+			time: String,
+			userAgent: String
 		}
-		res.send(out)
-		res.end()
-	}).catch(function(error) {
-		console.log(error)
-		res.end(error)
 	})
-})
 
-app.post("/", (req, res) => {
-	const name = req.body.name
-	const json = req.body["JSON"]
+	const editorErrorJS = mongoose.model("editorErrorJS", model)
 
-	const record = {
-		recordType: "EditorJSError",
-		fields: {
-			name: {
-				value: name
-			},
-			"JSON": {
-				value: json
-			},
-			recurrence: {
-				value: 1
-			}
-		}
+
+	function logRecords(callback) {
+		editorErrorJS.find((err, records) => {
+			if (err) return console.error(err);
+			callback(records)
+		})
 	}
 
-	publicDB.performQuery({
-		recordType: "EditorJSError"
-	}).then(function(response) {
-		const records = response.records
+	/** Server */
 
-		for (let r in records) {
-			if (r.fields.name.value == name) {
-				record.recordName = r.recordName
-				record.recordChangeTag = r.recordChangeTag
+	const express = require("express")
+	const app = express()
+	const port = 3000
 
-				record.fields.recurrence.value += r.fields.recurrence.value
+	app.use(express.json()); // to support JSON-encoded bodies
+	app.use(express.urlencoded()); // to support URL-encoded bodies
+
+	app.get("/", (req, res) => {
+		logRecords(records => {
+			let out = "<h1>StudIO - Editor common errors</h1><br>"
+			for (let record of records) {
+				out += `Name: ${record.name}<br>`
+				out += `Number: ${record.recurrence}<br><hr>`
 			}
-		}
-
-		publicDB.saveRecords(record).then(response => {
-			res.jsonp({
-				error: "success",
-				response: response.toString()
-			})
-			res.end()
-		}).catch(function(error) {
-			console.log(error)
-			res.jsonp({
-				error: error
-			})
+			res.send(out)
 			res.end()
 		})
-	}).catch(function(error) {
-		console.log(error)
-		res.end(error)
 	})
-})
-app.listen(port, () => console.log(`App listening on port ${port}!`))
+
+	app.post("/", (req, res) => {
+		const name = req.body.name
+		const json = req.body["JSON"]
+
+		const record = new editorErrorJS({
+			name: name,
+			recurrence: 1,
+			json: {
+				err: json.err,
+				src: json.src,
+				line: json.line,
+				column: json.column,
+				time: json.time,
+				userAgent: json.userAgent
+			}
+		})
+
+		const query = { name: name }
+		editorErrorJS.findOne(query, (err, r) => {
+			if (r != null && err == null) {
+				editorErrorJS.updateOne(query, { recurrence: r.recurrence + 1 }, (err, r) => {
+					res.jsonp({
+						error: "success",
+						response: r.toString()
+					})
+					res.end()
+				})
+			} else {
+				record.save(err => {
+					if (err) {
+						res.jsonp({
+							error: err
+						})
+						res.end()
+					}
+					res.jsonp({
+						error: "success"
+					})
+					res.end()
+				})
+			}
+		})
+	})
+	app.listen(port, () => console.log(`App listening on port ${port}!`))
+});
