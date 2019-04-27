@@ -39,10 +39,10 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.get("/", (req, res) => {
 	logRecords(records => {
 		let out = "<h1>StudIO - Editor common errors</h1><br>"
-		for (let record of records) {
-			out += `Name: ${record.name}<br>`
+		records.forEach((record, i) => {
+			out += `Name: <a href="/${i}">${record.name}</a><br>`
 			out += `Number: ${record.recurrence}<br><hr>`
-		}
+		})
 		res.send(out)
 		res.end()
 	}, res)
@@ -92,5 +92,12 @@ app.delete("/", (req, res) => {
 	res.end(0)
 })
 
+app.get("/:id", (req, res) => {
+	const i = req.params.id
+
+	const data = db.getData(`/db[${i}]`)
+	res.jsonp(data)
+	res.end()
+})
 
 app.listen(process.env.PORT || port, () => console.log(`App listening on port ${port}!`))

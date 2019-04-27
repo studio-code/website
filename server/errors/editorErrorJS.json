@@ -1,3 +1,28 @@
 {
-    "db": []
+    "db": [
+        {
+            "name": "test2",
+            "recurrence": 1,
+            "json": {
+                "err": "test",
+                "src": "source",
+                "line": 5,
+                "column": 6,
+                "time": "today",
+                "userAgent": "Safari 12"
+            }
+        },
+        {
+            "name": "test3",
+            "recurrence": 1,
+            "json": {
+                "err": "test",
+                "src": "source",
+                "line": 5,
+                "column": 6,
+                "time": "today",
+                "userAgent": "Safari 12"
+            }
+        }
+    ]
 }
