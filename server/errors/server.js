@@ -36,6 +36,14 @@ const port = 8080
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
+
+app.use(function(req, res, next) {
+	res.set("Access-Control-Allow-Origin", "*")
+	res.set("Access-Control-Allow-Methods", "POST, DELETE")
+	res.set("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token")
+    next();
+});
+
 app.get("/", (req, res) => {
 	logRecords(records => {
 		let out = "<h1>StudIO - Editor common errors</h1><br>"
