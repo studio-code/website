@@ -44,9 +44,11 @@ const listener = e => {
 	if (window.scrollY >= height - 10) {
 		nav.style.background = "rgba(255, 255, 255, 0.75)";
 		nav.style["border-bottom"] = "2px solid #eee";
-		nav.querySelector(".list > a").style.color = "#333"
+		nav.querySelectorAll(".list > a")[0].style.color = "#333"
+		nav.querySelectorAll(".list > a")[1].style.color = "#333"
 	} else {
-		nav.querySelector(".list > a").style.color = "#eee"
+		nav.querySelectorAll(".list > a")[0].style.color = "#eee"
+		nav.querySelectorAll(".list > a")[1].style.color = "#eee"
 	}
 }
 window.addEventListener("scroll", listener)
