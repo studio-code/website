@@ -58,3 +58,32 @@ document.querySelector(".logo").addEventListener("click", e => {
 document.querySelector('.year').innerHTML = new Date().getFullYear()
 
 listener()
+
+
+class Video {
+	constructor() {
+		this.state = {
+			video: false
+		}
+		document.querySelector(".slogan.video").addEventListener("click", e => {
+			this.state = {
+				video: !this.state.video
+			}
+			this.changeHandler()
+		})
+		document.querySelector(".yt").addEventListener("click", e => {
+			this.state = {
+				video: !this.state.video
+			}
+			this.changeHandler()
+		})
+	}
+	changeHandler() {
+		let display = "none"
+		if (this.state.video) {
+			display = "flex"
+		}
+		document.querySelector(".yt").style.display = display
+	}
+}
+const v = new Video()
