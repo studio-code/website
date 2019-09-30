@@ -118,16 +118,19 @@ nav {
 			top: 0;
 			left: 0;
 			z-index: 10;
+
 			.if {
 				width: 100vw;
 				max-width: 1080px;
 				height: 100vh;
 				max-height: 1920px;
+
 				iframe {
 					width: 100%;
 					height: 100%;
 				}
 			}
+
 			.exit {
 				position: fixed;
 				top: 20px;
@@ -275,10 +278,36 @@ footer {
 		align-items: center;
 		text-align: right;
 
-		.logo {
-			margin: 64px 64px 64px 0;
-			border-radius: 22.37%;
-			border: 1px solid #333;
+		.app {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.price {
+				display: inline-block;
+				padding: 5px;
+				font-size: 17px;
+				color: #ffffff;
+				width: 60px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 4px;
+				background-color: #026fc9;
+				border-radius: 15px;
+				transition: background 130ms ease-in-out;
+				font-weight: bold;
+				text-decoration: none;
+				&:hover {
+					background-color: #358cd4;
+				}
+			}
+
+			.logo {
+				margin: 64px 64px 64px 0;
+				border-radius: 22.37%;
+				border: 1px solid #333;
+			}
 		}
 
 		.c {
