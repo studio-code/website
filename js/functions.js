@@ -5,7 +5,7 @@ const listener = e => {
 	let nav = document.querySelector("nav")
 	let mediaQueryList = window.matchMedia("(max-width: 1000px)");
 
-	if (window.scrollY >= window.innerHeight / 2) {
+	if (window.scrollY >= window.innerHeight / 3) {
 		logo.style["z-index"] = 10;
 		logo.style.position = "fixed"
 		logo.style.top = "12.5px"
